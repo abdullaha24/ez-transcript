@@ -19,64 +19,89 @@ const FileUploader = ({ onUploadSuccess, onUploadError }) => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [fileError, setFileError] = useState(null);
 
-  const onDrop = useCallback(async (acceptedFiles) => {
-    // Reset states
-    setFileError(null);
-    setUploading(true);
-    setUploadProgress(0);
+const onDrop = useCallback(async (acceptedFiles) => {
+  console.log('file dropped or selected...', acceptedFiles)
+  // Reset states
+  setFileError(null);
+  setUploading(true);
+  setUploadProgress(0);
 
-    try {
-      const file = acceptedFiles[0];
-      
-      // Additional validation
-      if (!file) {
-        throw new Error('No file selected');
-      }
-      
-      if (file.size > MAX_FILE_SIZE) {
-        throw new Error('File size exceeds 100MB limit');
-      }
+  try {
+    const file = acceptedFiles[0];
+    console.log('Selected file object: ', file)
 
-      // Create a unique file name
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
-      const filePath = `uploads/${fileName}`;
-
-      // Upload to Supabase Storage
-      const { data, error } = await supabase.storage
-        .from('media')
-        .upload(filePath, file, {
-          cacheControl: '3600',
-          upsert: false,
-          onUploadProgress: (progress) => {
-            const percent = (progress.loaded / progress.total) * 100;
-            setUploadProgress(Math.round(percent));
-          },
-        });
-
-      if (error) throw error;
-
-      // Get the public URL
-      const { data: urlData } = supabase.storage
-        .from('media')
-        .getPublicUrl(filePath);
-
-      // Call success callback with file info
-      onUploadSuccess({
-        path: filePath,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        url: urlData.publicUrl,
-      });
-      
-    } catch (error) {
-      console.error('Error uploading file:', error);
-      setFileError(error.message);
-      onUploadError && onUploadError(error.message);
-    } finally {
-      setUploading(false);
+    if (!file) {
+      throw new Error('No file selected');
     }
+
+    if (file.size > MAX_FILE_SIZE) {
+      throw new Error('File size exceeds 100MB limit');
+    }
+
+    // Create a unique file name
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+    const filePath = `uploads/${fileName}`;
+    console.log('File path for upload: ', filePath)
+
+    // Upload to Supabase Storage
+    const { data, error } = await supabase.storage
+      .from('media')
+      .upload(filePath, file, {
+        cacheControl: '3600',
+        upsert: false,
+        onUploadProgress: (progress) => {
+          const percent = (progress.loaded / progress.total) * 100;
+          setUploadProgress(Math.round(percent));
+          console.log('Upload progress: ', percent) 
+        },
+        public:true,
+      });
+
+    if (error) {
+      console.error('Supabase upload error...', error)
+      throw error
+    }
+
+    console.log('File path used for public URL:', filePath);
+    // Get the public URL
+    const { data: urlData } = supabase.storage
+      .from('media')
+      .getPublicUrl(filePath);
+    console.log('Public URL from Supabase:', urlData);
+
+    const fileUrl = urlData?.publicUrl; // Extract the public URL
+
+    console.log('public file url: ', fileUrl)
+
+    // Call our backend API to initiate transcription
+    const response = await fetch('/api/transcribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ fileUrl }), // Send the file URL in the request body
+    });
+    console.log('response from /api/transcribe:', response)
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to initiate transcription');
+    }
+
+    const transcriptionResponse = await response.json();
+    console.log('Transcription initiated:', transcriptionResponse);
+
+    // Call success callback with the transcription response (you might want to modify this later)
+    onUploadSuccess(transcriptionResponse);
+
+  } catch (error) {
+    console.error('Error uploading or initiating transcription:', error);
+    setFileError(error.message);
+    onUploadError && onUploadError(error.message);
+  } finally {
+    setUploading(false);
+  }
   }, [onUploadSuccess, onUploadError]);
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } = useDropzone({

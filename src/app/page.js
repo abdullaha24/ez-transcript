@@ -25,7 +25,7 @@ export default function Home() {
               <p>Upload your audio or video file in any common format.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="text-blue-600 font-bold text-xl mb-2">2. Process</div>
+              <div className="text-blue-600 font-bold text-xl mb-2">2. Transcribe</div>
               <p>Our advanced AI engine transcribes your content with high accuracy.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
