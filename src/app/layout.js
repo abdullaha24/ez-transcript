@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'EZ-Transcript',
-  description: 'The most cost efficient AI-powered transcription and translation service',
+  description: 'Cost efficient and accurate AI-powered transcription and translation service',
 };
 
 export default function RootLayout({ children }) {
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <header className="py-4 px-6 bg-slate-800 text-white">
           <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-xl font-bold">TranscribeAI</h1>
+            <h1 className="text-xl font-bold">ez-transcript</h1>
             <nav>
               <ul className="flex gap-4">
                 <li><a href="/" className="hover:underline">Home</a></li>
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <main className="container mx-auto py-8 px-4">{children}</main>
         <footer className="py-6 px-6 bg-slate-100">
           <div className="container mx-auto text-center text-slate-600">
-            <p>© {new Date().getFullYear()} TranscribeAI. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} saturn ventures. All rights reserved.</p>
           </div>
         </footer>
       </body>

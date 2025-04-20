@@ -4,9 +4,9 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       <section className="text-center py-20">
-        <h1 className="text-5xl font-bold mb-6">Transcribe & Translate Your Audio</h1>
+        <h1 className="text-5xl font-bold mb-6">Transcribe your audio & video files using AI</h1>
         <p className="text-xl mb-8 max-w-2xl mx-auto">
-          AI powered transcription. Cheap. Accurate. Fast.
+          AI powered transcription. Cheap. Fast. Accurate. Secure.
         </p>
         <Link 
           href="/transcribe" 
@@ -48,7 +48,7 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">High Accuracy</h3>
-                <p>Powered by state-of-the-art speech recognition.</p>
+                <p>Powered by state-of-the-art speech recognition. Speaker recognition supported</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -81,7 +81,7 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Fast</h3>
-                <p>Get your transcriptions back quickly, even for long files.</p>
+                <p>Pro users can transcribe upto 20 files in parallel</p>
               </div>
             </div>
             <div className="flex items-start justfiy-center">
