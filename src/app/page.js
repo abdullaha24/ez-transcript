@@ -20,19 +20,19 @@ export default function Home() {
 
       <section className="py-16 w-full bg-slate-50">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">How It Works</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-slate-800">How It Works</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-blue-600 font-bold text-xl mb-2">1. Upload</div>
-              <p>Upload your audio or video file in any common format.</p>
+              <p className="text-slate-700">Upload your audio or video file in any common format.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-blue-600 font-bold text-xl mb-2">2. Transcribe</div>
-              <p>Our advanced AI engine transcribes your content with high accuracy.</p>
+              <p className="text-slate-700">Our advanced AI engine transcribes your content with high accuracy.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-blue-600 font-bold text-xl mb-2">3. Translate</div>
-              <p>(Optional) Translate your transcription into multiple languages.</p>
+              <p className="text-slate-700">(Optional) Translate your transcription into multiple languages.</p>
             </div>
           </div>
         </div>

@@ -65,9 +65,9 @@ export default function TranscribePage() {
       <h1 className="text-3xl font-bold mb-6">Transcribe Your Audio</h1>
 
       {!isLoggedIn ? (
-        <div className="bg-white p-8 rounded-lg shadow-md text-center">
-          <h2 className="text-xl font-semibold mb-4">Sign In to Start Transcribing</h2>
-          <p className="mb-6">Create an account or sign in to upload and transcribe your files.</p>
+        <div className="bg-gray-100 p-8 rounded-lg shadow-md text-center">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800">Sign In to Start Transcribing</h2>
+          <p className="mb-6 text-gray-700">Create an account or sign in to upload and transcribe your files.</p>
           <div className="flex justify-center gap-4">
             <button
               onClick={handleLoginClick}
@@ -77,7 +77,7 @@ export default function TranscribePage() {
             </button>
             <button
               onClick={handleLoginClick}
-              className="bg-slate-200 hover:bg-slate-300 font-semibold py-2 px-6 rounded transition-colors"
+              className="bg-slate-200 hover:bg-slate-300 text-gray-700 font-semibold py-2 px-6 rounded transition-colors"
             >
               Create Account
             </button>
@@ -87,11 +87,15 @@ export default function TranscribePage() {
         <div className="bg-white p-8 rounded-lg shadow-md">
           {transcriptId ? (
             <div>
-              <h2 className="text-xl font-semibold mb-4">Transcription Status: {transcriptionStatus}</h2>
+              <h2 className="text-xl font-semibold mb-4 text-gray-800">Transcription Status: <span className={`font-normal ${
+                transcriptionStatus === 'completed' ? 'text-green-500' :
+                transcriptionStatus === 'failed' ? 'text-red-500' :
+                'text-yellow-500'
+              }`}>{transcriptionStatus}</span></h2>
               {transcriptionStatus === 'completed' && transcriptionResult && (
-                <div className="mt-4 p-4 border rounded-md bg-slate-100">
-                  <h3 className="text-lg font-semibold mb-2">Transcription:</h3>
-                  <pre className="whitespace-pre-wrap">{transcriptionResult?.text}</pre>
+                <div className="mt-4 p-6 border rounded-md bg-gray-100 shadow-inner">
+                  <h3 className="text-lg font-semibold mb-3 text-gray-800">Transcription:</h3>
+                  <pre className="whitespace-pre-wrap text-gray-700 font-mono text-sm leading-relaxed">{transcriptionResult?.text}</pre>
                   {transcriptionResult?.words && transcriptionResult.words.length > 0 && (
                     <div className="mt-2 text-sm text-gray-600">
                       (Speaker labels and other details might be present in the full JSON response)
@@ -111,7 +115,9 @@ export default function TranscribePage() {
                 </div>
               )}
               {transcriptionStatus === 'processing' && (
-                <p>Your audio is being processed. Please wait...</p>
+                <div className="mt-4 p-4 rounded-md bg-yellow-100 text-yellow-700 border border-yellow-400">
+                  <p><strong className="font-semibold">Processing:</strong> Your audio is being transcribed. Please wait...</p>
+                </div>
               )}
             </div>
           ) : (
