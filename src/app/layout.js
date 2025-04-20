@@ -1,5 +1,6 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Link from 'next/link'; // Import the Link component
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,12 +15,15 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <header className="py-4 px-6 bg-slate-800 text-white">
           <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-xl font-bold">ez-transcript</h1>
+            <Link href="/" className="text-xl font-bold hover:underline">
+              ez-transcript
+            </Link>
             <nav>
               <ul className="flex gap-4">
-                <li><a href="/" className="hover:underline">Home</a></li>
-                <li><a href="/dashboard" className="hover:underline">Dashboard</a></li>
-                <li><a href="/pricing" className="hover:underline">Pricing</a></li>
+                <li><Link href="/" className="hover:underline">Home</Link></li>
+                <li><Link href="/transcribe" className="hover:underline">Transcribe</Link></li>
+                <li><Link href="/dashboard" className="hover:underline">Dashboard</Link></li>
+                <li><Link href="/pricing" className="hover:underline">Pricing</Link></li>
               </ul>
             </nav>
           </div>

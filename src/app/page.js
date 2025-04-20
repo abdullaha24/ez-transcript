@@ -4,18 +4,20 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       <section className="text-center py-20">
-        <h1 className="text-5xl font-bold mb-6">Transcribe your audio & video files using AI</h1>
+        <Link href="/" className="mb-6 inline-block hover:underline">
+          <h1 className="text-5xl font-bold">ez-transcript</h1>
+        </Link>
         <p className="text-xl mb-8 max-w-2xl mx-auto">
           AI powered transcription. Cheap. Fast. Accurate. Secure.
         </p>
-        <Link 
-          href="/transcribe" 
+        <Link
+          href="/transcribe"
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-colors"
         >
           Start Transcribing
         </Link>
       </section>
-      
+
       <section className="py-16 w-full bg-slate-50">
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 text-center">How It Works</h2>
@@ -35,7 +37,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       <section className="py-16 w-full">
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 text-center">Key Features</h2>
