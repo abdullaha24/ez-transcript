@@ -26,11 +26,11 @@ export default function Home() {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-blue-600 font-bold text-xl mb-2">2. Process</div>
-              <p>Our AI engine transcribes your content with high accuracy.</p>
+              <p>Our advanced AI engine transcribes your content with high accuracy.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="text-blue-600 font-bold text-xl mb-2">3. Translate</div>
-              <p>Optionally translate your transcription into multiple languages.</p>
+              <p>(Optional) Translate your transcription into multiple languages.</p>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">High Accuracy</h3>
-                <p>Powered by AssemblyAI's state-of-the-art speech recognition.</p>
+                <p>Powered by state-of-the-art speech recognition.</p>
               </div>
             </div>
             <div className="flex items-start">
@@ -84,6 +84,18 @@ export default function Home() {
                 <p>Get your transcriptions back quickly, even for long files.</p>
               </div>
             </div>
+            <div className="flex items-start justfiy-center">
+              <div className="bg-blue-100 p-2 rounded-full mr-4">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">Cheap</h3>
+                <p>The most cost effective AI-based transcription service on the planet!</p>
+              </div>
+              </div>
           </div>
         </div>
       </section>
